@@ -77,4 +77,10 @@ public class PhoneBookTest {
         //Then
         Assert.assertEquals(expected, phoneBook.hasnumber("123-456-7890"));
     }
+
+    @Test
+    public void testDisplay(){
+        //Given
+        
+    }
 }

@@ -16,6 +16,7 @@ public class PhoneBookTest {
     public void Setup(){
         phoneBook = new PhoneBook();
         phoneBook.add("Davis", "123-456-7890");
+        phoneBook.add("Chalie", "111-222-3333");
     }
 
     @After
@@ -29,10 +30,10 @@ public class PhoneBookTest {
         String expected = "123-456-7890";
 
         //When
-        phoneBook.lookup("Davis");
+        String actual = phoneBook.lookup("Davis");
 
         //Then
-        Assert.assertEquals(expected, phoneBook.lookup("Davis"));
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -81,6 +82,13 @@ public class PhoneBookTest {
     @Test
     public void testDisplay(){
         //Given
-        
+        String expected = "Chalie" + "111-222-3333" + "\n" + "Davis" + "123-456-7890" + "\n";
+
+        //When
+        phoneBook.display();
+
+        //Then
+        Assert.assertEquals(expected, phoneBook.display());
+
     }
 }

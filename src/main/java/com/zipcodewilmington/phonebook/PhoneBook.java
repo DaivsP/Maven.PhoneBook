@@ -1,5 +1,6 @@
 package com.zipcodewilmington.phonebook;
 
+import java.sql.SQLOutput;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -7,45 +8,57 @@ import java.util.TreeMap;
  * Created by leon on 1/23/18.
  */
 public class PhoneBook {
-    private TreeMap<String, String> inputs;
+    private TreeMap<String, String> treeMap;
 
 
     public PhoneBook() {
-        inputs = new TreeMap<String, String>();
+        treeMap = new TreeMap<String, String>();
     }
 
 
     public void add(String name, String number) {
-        inputs.put(name, number);
+        treeMap.put(name, number);
     }
 
     public String lookup(String name) {
-        return inputs.get(name);
+        return treeMap.get(name);
     }
 
     public void remove(String name) {
-        inputs.remove(name);
+        treeMap.remove(name);
     }
 
     public Integer getSize() {
-        return inputs.size();
+        return treeMap.size();
     }
 
     public String hasname(String name) {
-        return inputs.get(name);
+        return treeMap.get(name);
     }
 
     public String hasnumber(String number) {
-        Set<String> nameList = inputs.keySet();
+        Set<String> nameList = treeMap.keySet();
         for (String name : nameList) {
-            if (inputs.get(name).equals(number))
+            if (treeMap.get(name).equals(number))
                 return name;
         }
         return "Not Found";
     }
 
     public void clear() {
-        inputs.clear();
+        treeMap.clear();
+    }
+
+    public String display() {
+        String output = "";
+        Set<String> nameList = treeMap.keySet();
+        for (String name : nameList) {
+            output += name + treeMap.get(name) + "\n";
+            System.out.println(name);
+            System.out.println(treeMap.get(name));
+        }
+        //System.out.println(output);
+        return output;
     }
 }
 

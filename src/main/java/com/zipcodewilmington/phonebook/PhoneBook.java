@@ -33,29 +33,32 @@ public class PhoneBook {
     public Integer getSize() {
         return treeMap.size();
     }
-/*
-    public String reverseLookup(String number) {
-        Set<String> nameList = treeMap.keySet();
-        for (String name : nameList) {
-            if (treeMap.get(name).equals(number))
-                return name;
+
+    public ArrayList<String> reverseLookup(String phoneNumber) {
+        ArrayList<String> returnArrayList = null;
+        Set<String> listOfNames = treeMap.keySet();
+        for (String name : listOfNames) {
+            ArrayList<String> listOfNumbers = treeMap.get(name);
+            for (String number : listOfNumbers) {
+                if (phoneNumber.equals(number)) {
+                    if (returnArrayList == null) {
+                        returnArrayList = new ArrayList<String>();
+                        returnArrayList.add(name);
+                    } else {
+                        returnArrayList.add(name);
+                    }
+                }
+            }
         }
-        return "Not Found";
+        return returnArrayList;
     }
+
+
 
 
 
     public String display() {
-        String output = "";
-        Set<String> nameList = treeMap.keySet();
-        for (String name : nameList) {
-            output += name + treeMap.get(name) + "\n";
-            System.out.println(name);
-            System.out.println(treeMap.get(name));
-        }
-        //System.out.println(output);
-        return output;
+        return null;
     }
-    */
 }
 

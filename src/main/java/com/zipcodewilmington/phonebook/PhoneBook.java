@@ -1,27 +1,29 @@
 package com.zipcodewilmington.phonebook;
 
 import java.sql.SQLOutput;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by leon on 1/23/18.
  */
 public class PhoneBook {
-    private TreeMap<String, String> treeMap;
-
+    private TreeMap<String, ArrayList<String>> treeMap;
 
     public PhoneBook() {
-        treeMap = new TreeMap<String, String>();
+        treeMap = new TreeMap<String, ArrayList<String>>();
     }
 
 
-    public void add(String name, String number) {
-        treeMap.put(name, number);
+    public void add(String name, ArrayList<String> numbers) {
+        treeMap.put(name, numbers);
     }
 
-    public String lookup(String name) {
+    public ArrayList<String> lookup(String name) {
         return treeMap.get(name);
+    }
+
+    public void clear() {
+        treeMap.clear();
     }
 
     public void remove(String name) {
@@ -31,12 +33,12 @@ public class PhoneBook {
     public Integer getSize() {
         return treeMap.size();
     }
-
+/*
     public String hasname(String name) {
         return treeMap.get(name);
     }
 
-    public String hasnumber(String number) {
+    public String getName(String number) {
         Set<String> nameList = treeMap.keySet();
         for (String name : nameList) {
             if (treeMap.get(name).equals(number))
@@ -45,9 +47,7 @@ public class PhoneBook {
         return "Not Found";
     }
 
-    public void clear() {
-        treeMap.clear();
-    }
+
 
     public String display() {
         String output = "";
@@ -60,5 +60,6 @@ public class PhoneBook {
         //System.out.println(output);
         return output;
     }
+    */
 }
 

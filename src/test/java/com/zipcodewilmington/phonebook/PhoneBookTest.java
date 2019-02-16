@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -18,6 +19,7 @@ public class PhoneBookTest {
     @Before
     public void Setup() {
         phoneBook = new PhoneBook();
+        /*
         String davisNumber1 = "123-456-7890";
         String davisNumber2 = "111-222-3333";
         String chalieNumber1 = "123-123-1234";
@@ -28,6 +30,7 @@ public class PhoneBookTest {
         davisNumbers.add(davisNumber2);
         phoneBook.add("Davis", davisNumbers);
         phoneBook.add("Chalie", chalieNumbers);
+        */
     }
 
     @After
@@ -38,6 +41,10 @@ public class PhoneBookTest {
     @Test
     public void testAdd1Name1Number() {
         //Given
+        String davisNumber1 = "123-456-7890";
+        ArrayList<String> davisNumbers = new ArrayList<String>();
+        davisNumbers.add(davisNumber1);
+        phoneBook.add("Davis", davisNumbers);
         String expectedNumbers = "123-456-7890";
 
         //When
@@ -45,13 +52,18 @@ public class PhoneBookTest {
         String firstReturnedNumber = returnedNumbersList.get(0);
 
         //Then
-        //Assert.assertNotNull(returnedNumbersList);
         Assert.assertEquals(expectedNumbers, firstReturnedNumber);
     }
 
     @Test
     public void testAdd1Name2Numbers(){
         //Given
+        String davisNumber1 = "123-456-7890";
+        String davisNumber2 = "111-222-3333";
+        ArrayList<String> davisNumbers = new ArrayList<String>();
+        davisNumbers.add(davisNumber1);
+        davisNumbers.add(davisNumber2);
+        phoneBook.add("Davis", davisNumbers);
         String expectedNumbers = "123-456-7890" + "111-222-3333";
 
         //When
@@ -65,6 +77,31 @@ public class PhoneBookTest {
     @Test
     public void testRemove1Name(){
         //Given
+        String davisNumber1 = "123-456-7890";
+        ArrayList<String> davisNumbers = new ArrayList<String>();
+        davisNumbers.add(davisNumber1);
+        phoneBook.add("Davis", davisNumbers);
+        phoneBook.remove("Davis");
+        Integer expected = 0;
+
+        //When
+        Integer actual = phoneBook.getSize();
+
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testRemove1NameWhen2NamesStored(){
+        //Given
+        String davisNumber1 = "123-456-7890";
+        ArrayList<String> davisNumbers = new ArrayList<String>();
+        davisNumbers.add(davisNumber1);
+        phoneBook.add("Davis", davisNumbers);
+        String chalieNumber1 = "123-123-1234";
+        ArrayList<String> chalieNumbers = new ArrayList<String>();
+        chalieNumbers.add(chalieNumber1);
+        phoneBook.add("Chalie", chalieNumbers);
         phoneBook.remove("Davis");
         Integer expected = 1;
 
@@ -74,19 +111,27 @@ public class PhoneBookTest {
         //Then
         Assert.assertEquals(expected, actual);
     }
-/*
+
     @Test
-    public void testLookup(){
+    public void testRemove1NameWhen2NamesStored2(){
         //Given
-        String  expected = "123-456-7890";
+        String davisNumber1 = "123-456-7890";
+        ArrayList<String> davisNumbers = new ArrayList<String>();
+        davisNumbers.add(davisNumber1);
+        phoneBook.add("Davis", davisNumbers);
+        String chalieNumber1 = "123-123-1234";
+        ArrayList<String> chalieNumbers = new ArrayList<String>();
+        chalieNumbers.add(chalieNumber1);
+        phoneBook.add("Chalie", chalieNumbers);
+        phoneBook.remove("Davis");
 
         //When
-        phoneBook.hasname("Davis");
+        ArrayList<String> checkForNameDavis = phoneBook.lookup("Davis");
 
         //Then
-        Assert.assertEquals(expected, phoneBook.hasname("Davis"));
+        Assert.assertNull(checkForNameDavis);
     }
-
+/*
     @Test
     public void testReverseLookup(){
         //Given

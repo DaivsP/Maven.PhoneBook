@@ -34,11 +34,7 @@ public class PhoneBook {
         return treeMap.size();
     }
 /*
-    public String hasname(String name) {
-        return treeMap.get(name);
-    }
-
-    public String getName(String number) {
+    public String reverseLookup(String number) {
         Set<String> nameList = treeMap.keySet();
         for (String name : nameList) {
             if (treeMap.get(name).equals(number))

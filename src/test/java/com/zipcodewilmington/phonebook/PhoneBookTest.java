@@ -20,9 +20,9 @@ public class PhoneBookTest {
     @Before
     public void Setup() {
         phoneBook = new PhoneBook();
-
+    }
         @Test
-        public void testAdd1Name1Number() {
+        public void testAdd1Name1Number () {
             //Given
             String davisNumber1 = "123-456-7890";
             ArrayList<String> davisNumbers = new ArrayList<String>();
@@ -39,7 +39,7 @@ public class PhoneBookTest {
         }
 
         @Test
-        public void testAdd1Name2Numbers() {
+        public void testAdd1Name2Numbers () {
             //Given
             String davisNumber1 = "123-456-7890";
             String davisNumber2 = "111-222-3333";
@@ -47,6 +47,7 @@ public class PhoneBookTest {
             davisNumbers.add(davisNumber1);
             davisNumbers.add(davisNumber2);
             phoneBook.add("Davis", davisNumbers);
+
             String expectedNumber1 = "123-456-7890";
             String expectedNumber2 = "111-222-3333";
 
@@ -61,7 +62,7 @@ public class PhoneBookTest {
         }
 
         @Test
-        public void testRemove1Name() {
+        public void testRemove1Name () {
             //Given
             String davisNumber1 = "123-456-7890";
             ArrayList<String> davisNumbers = new ArrayList<String>();
@@ -78,12 +79,13 @@ public class PhoneBookTest {
         }
 
         @Test
-        public void testRemove1NameWhen2NamesStored() {
+        public void testRemove1NameWhen2NamesStored () {
             //Given
             String davisNumber1 = "123-456-7890";
             ArrayList<String> davisNumbers = new ArrayList<String>();
             davisNumbers.add(davisNumber1);
             phoneBook.add("Davis", davisNumbers);
+
             String chalieNumber1 = "123-123-1234";
             ArrayList<String> chalieNumbers = new ArrayList<String>();
             chalieNumbers.add(chalieNumber1);
@@ -107,12 +109,13 @@ public class PhoneBookTest {
         }
 
         @Test
-        public void testReverseLookup() {
+        public void testReverseLookup () {
             //Given
             String davisNumber1 = "123-456-7890";
             ArrayList<String> davisNumbers = new ArrayList<String>();
             davisNumbers.add(davisNumber1);
             phoneBook.add("Davis", davisNumbers);
+
             String chalieNumber1 = "123-123-1234";
             ArrayList<String> chalieNumbers = new ArrayList<String>();
             chalieNumbers.add(chalieNumber1);
@@ -131,7 +134,7 @@ public class PhoneBookTest {
         }
 
         @Test
-        public void testReverseLookupDoesNotExist() {
+        public void testReverseLookupDoesNotExist () {
             //Given
             String davisNumber1 = "123-456-7890";
             ArrayList<String> davisNumbers = new ArrayList<String>();
@@ -146,7 +149,7 @@ public class PhoneBookTest {
         }
 
         @Test
-        public void testReverseLookupAllNames() {
+        public void testReverseLookupAllNames () {
             //Given
             String davisNumber1 = "123-123-1234";
             ArrayList<String> davisNumbers = new ArrayList<String>();
@@ -182,10 +185,61 @@ public class PhoneBookTest {
         }
 
         @Test
-        public void testDisplay() {
+        public void testDisplay1Contact(){
+            //Given
             String davisNumber1 = "123-123-1234";
             ArrayList<String> davisNumbers = new ArrayList<String>();
             davisNumbers.add(davisNumber1);
             phoneBook.add("Davis", davisNumbers);
+
+            //When
+            String returnedOutput = phoneBook.display();
+
+            //Then
+            String expectedOutput = "Davis [123-123-1234]";
+            Assert.assertEquals(expectedOutput, returnedOutput);
+        }
+
+        @Test
+    public void testDisplayContactWithMultipleNumbers(){
+            //Given
+            String davisNumber1 = "123-456-7890";
+            String davisNumber2 = "111-222-3333";
+            ArrayList<String> davisNumbers = new ArrayList<String>();
+            davisNumbers.add(davisNumber1);
+            davisNumbers.add(davisNumber2);
+            phoneBook.add("Davis", davisNumbers);
+
+            //When
+            String returnedOutput = phoneBook.display();
+
+            //Then
+            String expectedOutput = "Davis [123-456-7890, 111-222-3333]";
+            Assert.assertEquals(expectedOutput, returnedOutput);
+        }
+
+        @Test
+    public void testDisplayMultipleContactsWithMultipleNumbers(){
+        //Given
+            String davisNumber1 = "123-456-7890";
+            String davisNumber2 = "111-222-3333";
+            ArrayList<String> davisNumbers = new ArrayList<String>();
+            davisNumbers.add(davisNumber1);
+            davisNumbers.add(davisNumber2);
+            phoneBook.add("Davis", davisNumbers);
+
+            String chalieNumber1 = "123-123-1234";
+            String chalieNumber2 = "111-111-1111";
+            ArrayList<String> chalieNumbers = new ArrayList<String>();
+            chalieNumbers.add(chalieNumber1);
+            chalieNumbers.add(chalieNumber2);
+            phoneBook.add("Chalie", chalieNumbers);
+
+            //When
+            String returnedOutput = phoneBook.display();
+
+            //Then
+            String expectedOutput = "Chalie [123-123-1234, 111-111-1111]" + "\n" + "Davis [123-456-7890, 111-222-3333]";
+            Assert.assertEquals(expectedOutput, returnedOutput);
         }
     }

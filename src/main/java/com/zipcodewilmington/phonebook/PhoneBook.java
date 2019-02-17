@@ -1,5 +1,6 @@
 package com.zipcodewilmington.phonebook;
 
+import java.sql.Array;
 import java.sql.SQLOutput;
 import java.util.*;
 
@@ -20,10 +21,6 @@ public class PhoneBook {
 
     public ArrayList<String> lookup(String name) {
         return treeMap.get(name);
-    }
-
-    public void clear() {
-        treeMap.clear();
     }
 
     public void remove(String name) {
@@ -54,11 +51,26 @@ public class PhoneBook {
     }
 
 
-
-
-
     public String display() {
-        return null;
+        Set<String> listOfNames = treeMap.keySet();
+        String returnValue = "";
+        Object[] listOfNamesArray = listOfNames.toArray();
+        for (int i = 0; i < listOfNamesArray.length; i++) {
+            String name = (String) listOfNamesArray[i];
+            System.out.println(name);
+            if (listOfNamesArray.length == 1) {
+                returnValue += name + " " + treeMap.get(name);
+                System.out.println(returnValue + "first if");
+            } else {
+                if (i == listOfNamesArray.length - 1) {
+                    returnValue += name + " " + treeMap.get(name);
+                    System.out.println("else: if");
+                } else {
+                    returnValue += name + " " + treeMap.get(name) + "\n";
+                    System.out.println(returnValue + "else: else");
+                }
+            }
+        }
+        return returnValue;
     }
 }
-
